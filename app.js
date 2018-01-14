@@ -28,4 +28,4 @@ models.sequelize.sync().then(function(){
   console.log(err,"Something went wrong with the Database Update!");
 });
 
-app.listen(3000);
+app.listen(3001);
