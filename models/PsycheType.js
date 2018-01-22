@@ -19,7 +19,14 @@ module.exports = function(sequelize, Sequelize) {
         }
     });
     PsycheType.associate = function (models) {
-
+      PsycheType.hasOne(models.PsycheUserResult, {
+        as: 'PsycheTypeResult',
+        foreignKey: 'psycheTypeId'
+      }),
+      PsycheType.hasOne(models.PsycheTypeDesc, {
+         as: 'PsycheTypeDesc',
+         foreignKey: 'psycheTypeId'
+       });
     };
 
     return PsycheType;

@@ -13,11 +13,21 @@ module.exports = function(sequelize, Sequelize) {
             allowNull: false
         }
 
-    })
+    });
     User.associate = function (models) {
 
+      User.hasOne(models.PsycheUserResult, {
+         as: 'UserPsycheResult',
+         foreignKey: 'userId'
+       }),
+
+       User.hasOne(models.PsycheUserAnswer, {
+          as: 'UserPsycheAnswer',
+          foreignKey: 'userId'
+      });
+      
     };
 
     return User;
 
-}
+};

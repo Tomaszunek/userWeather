@@ -12,14 +12,17 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.TEXT,
             allowNull: false
         },
-        
+
         psycheTestDescription: {
           type: Sequelize.TEXT,
           allowNull: false
         }
     });
     PsycheTestName.associate = function (models) {
-
+       PsycheTestName.hasOne(models.PsycheQuestion, {
+          as: 'PsycheTestNameQuestion',
+          foreignKey: 'psycheTestId'
+      });
     };
 
     return PsycheTestName;

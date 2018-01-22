@@ -24,7 +24,10 @@ module.exports = function(sequelize, Sequelize) {
         }
     });
     PsycheAnswer.associate = function (models) {
-
+      PsycheAnswer.belongsTo(models.PsycheQuestion, {
+         as: 'PsycheAnswerQuestion',
+         foreignKey: 'psycheQuestionId'
+     });
     };
 
     return PsycheAnswer;

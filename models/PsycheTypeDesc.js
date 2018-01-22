@@ -29,7 +29,10 @@ module.exports = function(sequelize, Sequelize) {
         }
     });
     PsycheTypeDesc.associate = function (models) {
-
+     PsycheTypeDesc.belongsTo(models.PsycheType, {
+        as: 'PsycheTestNameDesc',
+        foreignKey: 'psycheTypeId'
+      });
     };
 
     return PsycheTypeDesc;

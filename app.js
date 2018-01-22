@@ -22,10 +22,10 @@ const router = express.Router();
 app.use('/psyche', psyche);
 
 //Sync Database {force:true}
-models.sequelize.sync().then(function(){
+models.sequelize.sync({force:true}).then(function(){
   console.log('Nice! Database looks fine');
 }).catch(function(err){
   console.log(err,"Something went wrong with the Database Update!");
 });
 
-app.listen(3003);
+app.listen(3000);

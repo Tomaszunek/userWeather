@@ -24,7 +24,18 @@ module.exports = function(sequelize, Sequelize) {
         }
     });
     PsycheQuestion.associate = function (models) {
-
+      PsycheQuestion.hasOne(models.PsycheUserAnswer, {
+         as: 'PsycheQuestionUserAnswer',
+         foreignKey: 'psycheQuestionId'
+       }),
+      PsycheQuestion.hasOne(models.PsycheAnswer, {
+         as: 'PsycheQuestionAnswer',
+         foreignKey: 'psycheQuestionId'
+       }),
+       PsycheQuestion.belongsTo(models.PsycheTestName, {
+          as: 'PsycheQuestionTestName',
+          foreignKey: 'psycheTestId'
+      });
     };
 
     return PsycheQuestion;

@@ -24,7 +24,14 @@ module.exports = function(sequelize, Sequelize) {
         }
     });
     PsycheUserResult.associate = function (models) {
-
+      PsycheUserResult.belongsTo(models.User, {
+        as: 'PsycheUserResult',
+        foreignKey: 'userId'
+      }),
+      PsycheUserResult.belongsTo(models.PsycheType, {
+        as: 'PsycheResultType',
+        foreignKey: 'psycheTypeId'
+      });
     };
 
     return PsycheUserResult;
