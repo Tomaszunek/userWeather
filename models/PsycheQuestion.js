@@ -13,6 +13,11 @@ module.exports = function(sequelize, Sequelize) {
             allowNull: false
         },
 
+        order: {
+            type: Sequelize.INTEGER,
+            allowNull: false
+        },
+
         questionName: {
             type: Sequelize.TEXT,
             allowNull: false
@@ -32,6 +37,10 @@ module.exports = function(sequelize, Sequelize) {
          as: 'PsycheQuestionAnswer',
          foreignKey: 'psycheQuestionId'
        }),
+       PsycheQuestion.hasOne(models.PsycheQuestionScore, {
+          as: 'PsycheQuestionScore',
+          foreignKey: 'psycheQuestionId'
+        }),
        PsycheQuestion.belongsTo(models.PsycheTestName, {
           as: 'PsycheQuestionTestName',
           foreignKey: 'psycheTestId'
