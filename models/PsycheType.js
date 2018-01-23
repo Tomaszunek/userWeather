@@ -26,15 +26,19 @@ module.exports = function(sequelize, Sequelize) {
       PsycheType.hasOne(models.PsycheTypeDesc, {
          as: 'PsycheTypeDesc',
          foreignKey: 'psycheTypeId'
-       }),
-       PsycheType.hasOne(models.PsycheRelationConnection, {
-          as: 'PsycheTypeConnection1',
-          foreignKey: 'psycheTypeId1'
-        }),
-        PsycheType.hasOne(models.PsycheRelationConnection, {
-           as: 'PsycheTypeConnection2',
-           foreignKey: 'psycheTypeId2'
-         });
+      }),
+      PsycheType.hasOne(models.PsycheRelationConnection, {
+        as: 'PsycheTypeConnection1',
+        foreignKey: 'psycheTypeId1'
+      }),
+      PsycheType.hasOne(models.PsycheRelationConnection, {
+         as: 'PsycheTypeConnection2',
+         foreignKey: 'psycheTypeId2'
+      }),
+      PsycheType.hasOne(models.PsycheTestScoreResult, {
+          as: 'PsycheTypeScoreResult',
+          foreignKey: 'psycheTypeId'
+      });
     };
 
     return PsycheType;
