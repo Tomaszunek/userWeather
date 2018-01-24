@@ -23,6 +23,10 @@ module.exports = function(sequelize, Sequelize) {
           as: 'PsycheTestNameQuestion',
           foreignKey: 'psycheTestId'
       });
+      PsycheTestName.belongsTo(models.PsycheType, {
+         as: 'PsycheTestType',
+         foreignKey: 'psycheTestId'
+     });
     };
 
     return PsycheTestName;

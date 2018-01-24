@@ -1,10 +1,11 @@
 'use strict';
 
 const express = require('express');
-const models = require('../models');
+const models = require('../../models');
 const Sequelize = require('sequelize');
 
 const router = express.Router();
+
 
 router.get('/getAllPsyche',function(req, res){
   models.PsycheTestName.findAll().then((psychTest) => {

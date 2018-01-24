@@ -19,6 +19,10 @@ module.exports = function(sequelize, Sequelize) {
         }
     });
     PsycheType.associate = function (models) {
+      PsycheType.hasOne(models.PsycheTestName, {
+        as: 'PsycheTypeTest',
+        foreignKey: 'psycheTypeId'
+      }),
       PsycheType.hasOne(models.PsycheUserResult, {
         as: 'PsycheTypeResult',
         foreignKey: 'psycheTypeId'
