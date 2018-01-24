@@ -8,7 +8,7 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.INTEGER
         },
 
-        psycheTestId: {
+        testId: {
             type: Sequelize.INTEGER,
             allowNull: false
         },
@@ -31,19 +31,19 @@ module.exports = function(sequelize, Sequelize) {
     PsycheQuestion.associate = function (models) {
       PsycheQuestion.hasOne(models.PsycheUserAnswer, {
          as: 'PsycheQuestionUserAnswer',
-         foreignKey: 'psycheQuestionId'
+         foreignKey: 'questionId'
        }),
       PsycheQuestion.hasOne(models.PsycheAnswer, {
          as: 'PsycheQuestionAnswer',
-         foreignKey: 'psycheQuestionId'
+         foreignKey: 'questionId'
        }),
        PsycheQuestion.hasOne(models.PsycheQuestionScore, {
           as: 'PsycheQuestionScore',
-          foreignKey: 'psycheQuestionId'
+          foreignKey: 'questionId'
         }),
        PsycheQuestion.belongsTo(models.PsycheTestName, {
           as: 'PsycheQuestionTestName',
-          foreignKey: 'psycheTestId'
+          foreignKey: 'testId'
       });
     };
 

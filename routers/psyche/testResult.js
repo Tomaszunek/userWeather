@@ -6,30 +6,30 @@ const Sequelize = require('sequelize');
 
 const router = express.Router();
 
-router.get('/getResultMBTI/:idUser',function(req, res){
-  models.PsycheTestScore.findAll().then((testResult) => {
-    if(testScores){
-      res.send(testScores);
+router.post('/createResult/:userId/:testId',function(req, res){
+  models.PsycheTestScore.findAll().then((testName) => {
+    if(testName){
+      res.send(testName);
     }
   }).catch(function(err){
     res.send(err);
   });
 });
 
-router.get('/getResultEnnegram/:idUser',function(req, res){
-  models.PsycheTestScore.findAll().then((testResult) => {
-    if(testScores){
-      res.send(testScores);
+router.post('/createResult/:userId',function(req, res){
+  models.PsycheTestScore.findAll().then((testName) => {
+    if(testName){
+      res.send(testName);
     }
   }).catch(function(err){
     res.send(err);
   });
 });
 
-router.get('/getResultKWLM/:idUser',function(req, res){
-  models.PsycheTestScore.findAll().then((testResult) => {
-    if(testScores){
-      res.send(testScores);
+router.post('/createResult/:userId',function(req, res){
+  models.PsycheTestScore.findAll().then((testName) => {
+    if(testName){
+      res.send(testName);
     }
   }).catch(function(err){
     res.send(err);

@@ -8,7 +8,7 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.INTEGER
         },
 
-        psycheQuestionId: {
+        questionId: {
             type: Sequelize.INTEGER,
             allowNull: false
         },
@@ -41,7 +41,7 @@ module.exports = function(sequelize, Sequelize) {
     PsycheQuestionScore.associate = function (models) {
       PsycheQuestionScore.belongsTo(models.PsycheQuestion, {
          as: 'PsycheScoreQuestion',
-         foreignKey: 'psycheQuestionId'
+         foreignKey: 'questionId'
      });
     };
 

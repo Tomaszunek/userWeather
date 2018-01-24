@@ -16,4 +16,14 @@ router.get('/getQuestions',function(req, res){
   });
 });
 
+router.get('/getQuestions/:testId',function(req, res){
+  models.PsycheQuestion.findAll({include: [{model : models.PsycheAnswer, as: 'PsycheQuestionAnswer'}]}, {where : {'psycheTestId' : req.params.testId}}).then((questions) => {
+    if(questions){
+      res.send(questions);
+    }
+  }).catch(function(err){
+    res.send(err);
+  });
+});
+
 module.exports = router;

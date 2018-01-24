@@ -7,7 +7,7 @@ const Sequelize = require('sequelize');
 const router = express.Router();
 
 router.get('/getUserAnswers',function(req, res){
-  models.PsycheUserAnswers.findAll().then((userAnswers) => {
+  models.PsycheUserAnswer.findAll().then((userAnswers) => {
     if(userAnswers){
       res.send(userAnswers);
     }
@@ -15,5 +15,20 @@ router.get('/getUserAnswers',function(req, res){
     res.send(err);
   });
 });
+
+router.post('/createUserAnswer/:userId/:questionId/:answerId',function(req, res){
+  models.PsycheUserAnswer.findOne({where: [{'userId' : req.params.userId}, {'questionId' : req.params.userId}, {'userId' : req.params.userId}]}).then((userAnswers) => {
+    if(userAnswers){
+      userAnswers.update({'answerId' : req.params.answerId});
+    } else {
+      userAnswers.create({'userId' : req.params.userId, 'questionId' : req.params.userId, 'answerId' : req.params.answerId});
+    }
+  }).catch(function(err){
+    res.send(err);
+  });
+});
+
+
+
 
 module.exports = router;

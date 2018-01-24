@@ -8,12 +8,12 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.INTEGER
         },
 
-        psycheTypeId1: {
+        typeId1: {
             type: Sequelize.INTEGER,
             allowNull: false
         },
 
-        psycheTypeId2: {
+        typeId2: {
             type: Sequelize.INTEGER,
             allowNull: false
         },
@@ -32,11 +32,11 @@ module.exports = function(sequelize, Sequelize) {
     PsycheRelationConnection.associate = function (models) {
       PsycheRelationConnection.belongsTo(models.PsycheType, {
          as: 'PsycheConnectionType1',
-         foreignKey: 'psycheTypeId1'
+         foreignKey: 'typeId1'
      }),
      PsycheRelationConnection.belongsTo(models.PsycheType, {
         as: 'PsycheConnectionType2',
-        foreignKey: 'psycheTypeId1'
+        foreignKey: 'typeId1'
       });
     };
 
