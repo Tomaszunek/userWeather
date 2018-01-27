@@ -13,7 +13,7 @@ module.exports = function(sequelize, Sequelize) {
             allowNull: false
         },
 
-        psycheTypeId: {
+        typeId: {
             type: Sequelize.INTEGER,
             allowNull: false
         },
@@ -30,7 +30,7 @@ module.exports = function(sequelize, Sequelize) {
       }),
       PsycheUserResult.belongsTo(models.PsycheType, {
         as: 'PsycheResultType',
-        foreignKey: 'psycheTypeId'
+        foreignKey: 'typeId'
       });
     };
 

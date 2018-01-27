@@ -1,6 +1,6 @@
 module.exports = function(sequelize, Sequelize) {
 
-    var PsycheQuestionScore = sequelize.define('PsycheQuestionScore', {
+    var PsycheTestScoreResult = sequelize.define('PsycheTestScoreResult', {
 
         id: {
             autoIncrement: true,
@@ -8,7 +8,7 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.INTEGER
         },
 
-        questionId: {
+        typeId: {
             type: Sequelize.INTEGER,
             allowNull: false
         },
@@ -38,13 +38,13 @@ module.exports = function(sequelize, Sequelize) {
             allowNull: false
         }
     });
-    PsycheQuestionScore.associate = function (models) {
-      PsycheQuestionScore.belongsTo(models.PsycheQuestion, {
-         as: 'PsycheScoreQuestion',
-         foreignKey: 'questionId'
-     });
+    PsycheTestScoreResult.associate = function (models) {
+      PsycheTestScoreResult.belongsTo(models.PsycheType, {
+        as: 'PsycheTestScoreResult',
+        foreignKey: 'typeId'
+      });
     };
 
-    return PsycheQuestionScore;
+    return PsycheTestScoreResult;
 
 };

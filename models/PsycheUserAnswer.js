@@ -13,12 +13,12 @@ module.exports = function(sequelize, Sequelize) {
             allowNull: false
         },
 
-        psycheQuestionId: {
+        questionId: {
             type: Sequelize.INTEGER,
             allowNull: false
         },
 
-        psycheAnswerId: {
+        answerId: {
             type: Sequelize.INTEGER,
             allowNull: false
         }
@@ -31,12 +31,12 @@ module.exports = function(sequelize, Sequelize) {
 
        PsycheUserAnswer.belongsTo(models.PsycheQuestion, {
           as: 'PsycheTestQuestion',
-          foreignKey: 'psycheQuestionId'
+          foreignKey: 'questionId'
         }),
 
         PsycheUserAnswer.belongsTo(models.PsycheAnswer, {
            as: 'PsycheTestAnswer',
-           foreignKey: 'psycheAnswerId'
+           foreignKey: 'answerId'
        });
 
     };
