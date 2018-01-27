@@ -19,9 +19,9 @@ router.get('/getUserAnswers',function(req, res){
 router.post('/createUserAnswer/:userId/:questionId/:answerId',function(req, res){
   models.PsycheUserAnswer.findOne({where: [{'userId' : req.params.userId}, {'questionId' : req.params.userId}, {'userId' : req.params.userId}]}).then((userAnswers) => {
     if(userAnswers){
-      userAnswers.update({'answerId' : req.params.answerId});
+      models.PsycheUserAnswer.update({'answerId' : req.params.answerId});
     } else {
-      userAnswers.create({'userId' : req.params.userId, 'questionId' : req.params.userId, 'answerId' : req.params.answerId});
+      models.PsycheUserAnswer.create({'userId' : req.params.userId, 'questionId' : req.params.userId, 'answerId' : req.params.answerId});
     }
   }).catch(function(err){
     res.send(err);

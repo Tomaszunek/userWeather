@@ -6,30 +6,19 @@ const Sequelize = require('sequelize');
 
 const router = express.Router();
 
-router.post('/createResult/:userId/:testId',function(req, res){
-  models.PsycheTestScore.findAll().then((testName) => {
-    if(testName){
-      res.send(testName);
-    }
-  }).catch(function(err){
-    res.send(err);
-  });
-});
-
-router.post('/createResult/:userId',function(req, res){
-  models.PsycheTestScore.findAll().then((testName) => {
-    if(testName){
-      res.send(testName);
-    }
-  }).catch(function(err){
-    res.send(err);
-  });
-});
-
-router.post('/createResult/:userId',function(req, res){
-  models.PsycheTestScore.findAll().then((testName) => {
-    if(testName){
-      res.send(testName);
+router.get('/createResult/:userId/:testId',function(req, res){
+  models.PsycheQuestion.findAll({where: {'testId' : req.params.testId}}).then((psycheQuestion) => {
+    if(psycheQuestion){
+      models.PsycheQuestion.findAll(
+        {include: [{model : models.PsycheUserAnswer, on : 'PsycheQuestionUserAnswer'}] ,
+        where: {'testId' : req.params.testId, 'userId' : req.params.userId}}).then((userAnswers) => {
+          if(psycheQuestion.length = userAnswers.length){
+            
+          }
+          res.send(userAnswers);
+        }).catch(function(err){
+          res.send(err);
+        });
     }
   }).catch(function(err){
     res.send(err);

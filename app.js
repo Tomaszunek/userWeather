@@ -39,6 +39,7 @@ app.use('/psyche/type', psychetype);
 app.use('/psyche/type-desc', psychetypedesc);
 app.use('/psyche/user-answer', psycheuseranswer);
 app.use('/psyche/user-result', psycheresult);
+app.use('/psyche/test-result', testResults);
 
 //Sync Database {force:true}
 models.sequelize.sync().then(function(){

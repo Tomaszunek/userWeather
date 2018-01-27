@@ -7,7 +7,7 @@ const Sequelize = require('sequelize');
 const router = express.Router();
 
 router.get('/getUserResults',function(req, res){
-  models.PsycheUserAnswers.findAll().then((userResults) => {
+  models.PsycheUserResult.findAll().then((userResults) => {
     if(userResults){
       res.send(userResults);
     }
