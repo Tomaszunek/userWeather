@@ -33,7 +33,7 @@ router.post('/createTypeDesc',function(req, res){
     'descriptionBodyShort' : req.body.descriptionBodyShort,
     'descriptionBody' : req.body.typeId
   };
-  models.PsycheTypeDesc.create(psycheTypeDesc).then(function(psycheTypeDesc){
+  models.PsycheTypeDesc.create(psycheTypeDesc).then((psycheTypeDesc) => {
     res.send(psycheTypeDesc);
   });
 });
@@ -44,13 +44,13 @@ router.put('/updateTypeDesc/:id',function(req, res){
     descriptionName : req.body.descriptionName,
     descriptionBodyShort : req.body.descriptionBodyShort,
     descriptionBody : req.body.typeId
-  }, { where: {'id' : req.params.id}}).then(function(psycheTypeDesc){
+  }, { where: {'id' : req.params.id}}).then((psycheTypeDesc) => {
     res.send(psycheTypeDesc);
   });
 });
 
 router.delete('/deleteTypeDesc/:id',function(req, res){
-  models.PsycheTypeDesc.destroy({where: {'id' : req.params.id}}).then(function(){
+  models.PsycheTypeDesc.destroy({where: {'id' : req.params.id}}).then(() => {
     res.send();
   });
 });
