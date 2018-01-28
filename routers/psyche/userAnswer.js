@@ -28,11 +28,23 @@ router.get('/getUserAnswer/:id',function(req, res){
 
 
 router.post('/createUserAnswer/:userId/:questionId/:answerId',function(req, res){
-  models.PsycheUserAnswer.findOne({where: [{'userId' : req.params.userId}, {'questionId' : req.params.userId}, {'userId' : req.params.userId}]}).then((userAnswers) => {
+  models.PsycheUserAnswer.findOne({where: {'userId' : req.params.userId, 'questionId' : req.params.questionId}}).then((userAnswers) => {
     if(userAnswers){
-      models.PsycheUserAnswer.update({'answerId' : req.params.answerId});
+      models.PsycheUserAnswer.update({'answerId' : req.params.answerId}, {where: [{'userId' : req.params.userId}, {'questionId' : req.params.questionId}]}).then((userAnswer2) => {
+        if(userAnswer2){
+          res.send(userAnswer2);
+        }
+      }).catch(function(err){
+        res.send(err);
+      });
     } else {
-      models.PsycheUserAnswer.create({'userId' : req.params.userId, 'questionId' : req.params.userId, 'answerId' : req.params.answerId});
+      models.PsycheUserAnswer.create({'userId' : req.params.userId, 'questionId' : req.params.questionId, 'answerId' : req.params.answerId}).then((userAnswer2) => {
+        if(userAnswer2){
+          res.send(userAnswer2);
+        }
+      }).catch(function(err){
+        res.send(err);
+      });
     }
   }).catch(function(err){
     res.send(err);
