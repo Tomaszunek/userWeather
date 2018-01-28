@@ -19,13 +19,83 @@ module.exports = function(sequelize, Sequelize) {
       User.hasOne(models.PsycheUserResult, {
          as: 'UserPsycheResult',
          foreignKey: 'userId'
-       }),
+       });
 
        User.hasOne(models.PsycheUserAnswer, {
           as: 'UserPsycheAnswer',
           foreignKey: 'userId'
       });
-      
+
+      User.hasOne(models.CommunicationMessage, {
+         as: 'UserCommunicationMessage1',
+         foreignKey: 'userId1'
+       });
+
+       User.hasOne(models.CommunicationMessage, {
+          as: 'UserCommunicationMessage2',
+          foreignKey: 'userId2'
+      });
+
+      User.hasOne(models.CommunicationWatchedProfile, {
+         as: 'UserCommunicationWatched1',
+         foreignKey: 'userId1'
+       });
+
+       User.hasOne(models.CommunicationWatchedProfile, {
+          as: 'UserCommunicationWatched2',
+          foreignKey: 'userId2'
+      });
+
+      User.hasOne(models.CommunicationBlackUser, {
+         as: 'UserCommunicationBlack1',
+         foreignKey: 'userId1'
+       });
+
+       User.hasOne(models.CommunicationBlackUser, {
+          as: 'UserCommunicationBlack2',
+          foreignKey: 'userId2'
+      });
+
+      User.hasOne(models.CommunicationFavoriteUser, {
+         as: 'UserCommunicationFavorite1',
+         foreignKey: 'userId1'
+       });
+
+       User.hasOne(models.CommunicationFavoriteUser, {
+          as: 'UserCommunicationFavorite2',
+          foreignKey: 'userId2'
+      });
+
+      User.hasOne(models.CommunicationFiltrUserAnswer, {
+         as: 'UserCommunicationFiltrAnswer1',
+         foreignKey: 'userId1'
+       });
+
+       User.hasOne(models.CommunicationFiltrUserAnswer, {
+          as: 'UserCommunicationFiltrAnswer2',
+          foreignKey: 'userId2'
+      });
+
+      User.hasOne(models.CommunicationGiftToken, {
+         as: 'UserCommunicationGiftToken1',
+         foreignKey: 'userId1'
+       });
+
+       User.hasOne(models.CommunicationGiftToken, {
+          as: 'UserCommunicationGiftToken2',
+          foreignKey: 'userId2'
+      });
+
+      User.hasOne(models.CommunicationGiftToken, {
+         as: 'UserCommunicationProvocationToken1',
+         foreignKey: 'userId1'
+       });
+
+       User.hasOne(models.CommunicationGiftToken, {
+          as: 'UserCommunicationProvocationToken2',
+          foreignKey: 'userId2'
+      });
+
     };
 
     return User;
