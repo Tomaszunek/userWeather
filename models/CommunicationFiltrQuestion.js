@@ -40,7 +40,7 @@ module.exports = function(sequelize, Sequelize) {
 
     });
     CommunicationFlirtQuestion.associate = function (models) {
-        CommunicationFlirtQuestion.hasOne(models.CommunicationFlirtTypeQuestion, {
+        CommunicationFlirtQuestion.belongsTo(models.CommunicationFlirtTypeQuestion, {
          through: 'CommunicationFlirtTypeQuestion',
          foreignKey: 'flirtTypeId'
        });

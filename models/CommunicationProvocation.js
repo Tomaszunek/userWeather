@@ -8,6 +8,11 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.INTEGER
         },
 
+        provocationTypeId: {
+            type: Sequelize.INTEGER,
+            allowNull: false
+        },
+
         provocationImage: {
             type: Sequelize.STRING,
             allowNull: false
@@ -16,25 +21,21 @@ module.exports = function(sequelize, Sequelize) {
         provocationMassage: {
             type: Sequelize.STRING,
             allowNull: false
-        },
-
-        provocationTypeId: {
-            type: Sequelize.INTEGER,
-            allowNull: false
         }
-    })
+
+    });
     CommunicationProvocation.associate = function (models) {
       CommunicationProvocation.hasOne(models.CommunicationProvocationToken, {
          as: 'CommunicationProvocationToken',
          foreignKey: 'provocationId'
      });
 
-       CommunicationProvocation.hasOne(models.CommunicationFiltrTypeQuestion, {
-          as: 'CommunicationProvocationTypeQuestion',
+       CommunicationProvocation.belongsTo(models.CommunicationFlirtTypeQuestion, {
+          as: 'CommunicationProvocationType',
           foreignKey: 'provocationTypeId'
       });
     };
 
     return CommunicationProvocation;
 
-}
+};

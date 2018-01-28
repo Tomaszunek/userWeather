@@ -19,7 +19,7 @@ module.exports = function(sequelize, Sequelize) {
         },
 
         giftId: {
-            type: Sequelize.TEXT,
+            type: Sequelize.INTEGER,
             allowNull: false
         },
 

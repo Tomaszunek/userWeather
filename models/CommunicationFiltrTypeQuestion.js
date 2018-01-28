@@ -31,13 +31,13 @@ module.exports = function(sequelize, Sequelize) {
 
     });
     CommunicationFlirtTypeQuestion.associate = function (models) {
-        CommunicationFlirtTypeQuestion.belongsTo(models.CommunicationFlirtQuestion, {
+        CommunicationFlirtTypeQuestion.hasOne(models.CommunicationFlirtQuestion, {
          through: 'CommunicationFlirtQuestionType',
          foreignKey: 'flirtTypeId'
        });
 
-       CommunicationFlirtTypeQuestion.belongsTo(models.CommunicationProvocation, {
-        through: 'CommunicationFlirtTypeProvocation',
+       CommunicationFlirtTypeQuestion.hasOne(models.CommunicationProvocation, {
+        through: 'CommunicationTypeProvocation',
         foreignKey: 'provocationTypeId'
       });
     };
