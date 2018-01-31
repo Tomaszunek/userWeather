@@ -24,6 +24,11 @@ module.exports = function(sequelize, Sequelize) {
             allowNull: false
         },
 
+        locationId: {
+          type: Sequelize.INTEGER,
+          allowNull: false
+        },
+
         phone: {
           type: Sequelize.INTEGER,
           allowNull: false
@@ -131,10 +136,39 @@ module.exports = function(sequelize, Sequelize) {
          foreignKey: 'userId1'
        });
 
-       User.hasOne(models.CommunicationGiftToken, {
-          as: 'UserCommunicationProvocationToken2',
-          foreignKey: 'userId2'
+       User.hasOne(models.EventInvite, {
+          as: 'UserEventInvite1',
+          foreignKey: 'userId1'
       });
+
+      User.hasOne(models.EventInvite, {
+         as: 'UserEventInvite2',
+         foreignKey: 'userId2'
+     });
+
+    User.hasOne(models.EventUser, {
+       as: 'UserEventCreatedUser',
+       foreignKey: 'createdByUserId'
+   });
+
+   User.hasOne(models.EventUserConn, {
+      as: 'UserEventUserConn1',
+      foreignKey: 'userId1'
+  });
+
+  User.hasOne(models.EventUserConn, {
+     as: 'UserEventUserConn2',
+     foreignKey: 'userId2'
+ });
+
+ User.belongsTo(models.Locations, {
+    as: 'UserLocation',
+    foreignKey: 'locationId'
+});
+
+
+
+
 
     };
 

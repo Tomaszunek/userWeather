@@ -34,6 +34,15 @@ module.exports = function(sequelize, Sequelize) {
         }
     });
     Locations.associate = function (models) {
+      Locations.hasOne(models.EventUser, {
+         as: 'LocationsEventUser',
+         foreignKey: 'locationId'
+      });
+
+      Locations.hasOne(models.User, {
+         as: 'LocationsUser',
+         foreignKey: 'locationId'
+      });
 
 
     };
