@@ -47,7 +47,7 @@ module.exports = function(sequelize, Sequelize) {
     UserDetail.associate = function (models) {
         UserDetail.belongsTo(models.User, {
          through: 'UserDetail',
-         foreignKey: 'idUser'
+         foreignKey: 'userId'
         })
 
 
