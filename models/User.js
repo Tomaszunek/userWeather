@@ -11,10 +11,50 @@ module.exports = function(sequelize, Sequelize) {
         username: {
             type: Sequelize.TEXT,
             allowNull: false
+        },
+        email: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            validate: {
+                isEmail: true
+            }
+        },
+        password: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+
+        phone: {
+          type: Sequelize.INTEGER,
+          allowNull: false
+        },
+
+        last_login: {
+            type: Sequelize.DATE,
+        },
+
+        onlineNow: {
+          type: Sequelize.BOOLEAN,
+          defaultValue: false
+        },
+
+        activeAcc: {
+          type: Sequelize.BOOLEAN,
+          defaultValue: false
+        },
+
+        passwdReset: {
+          type: Sequelize.BOOLEAN,
+          defaultValue: false
         }
 
     });
     User.associate = function (models) {
+
+      User.hasOne(models.UserDetail, {
+         as: 'UserDetail',
+         foreignKey: 'userId'
+       });
 
       User.hasOne(models.PsycheUserResult, {
          as: 'UserPsycheResult',
