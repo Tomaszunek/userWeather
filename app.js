@@ -1,10 +1,19 @@
-'use strict';
+//'use strict';
 
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
 const url = require('url');
 const http = require('http');
+
+const commBlockProfile = require('./routers/communication/blockProfile.js');
+const commFavoriteProfile = require('./routers/communication/favoriteProfile.js');
+const commFlirt = require('./routers/communication/flirt.js');
+const commGift = require('./routers/communication/gift.js');
+const commMessage = require('./routers/communication/message.js');
+const commProvocation = require('./routers/communication/provocation.js');
+const commWatchedProfile = require('./routers/communication/watchedProfile.js');
+
 const psycheanswer = require('./routers/psyche/answer.js');
 const psychequestion = require('./routers/psyche/question.js');
 const psychequestionscore = require('./routers/psyche/questionScore.js');
@@ -29,6 +38,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 const router = express.Router();
 
+app.use('/comm/block-profile', commBlockProfile);
+app.use('/comm/favorite-profile', commFavoriteProfile);
+app.use('/comm/flirt', commFlirt);
+app.use('/comm/gift', commGift);
+app.use('/comm/message', commMessage);
+app.use('/comm/provoc', commProvocation);
+app.use('/comm/watched-profile', commWatchedProfile);
+
 app.use('/psyche/answer', psycheanswer);
 app.use('/psyche/question', psychequestion);
 app.use('/psyche/question-score', psychequestionscore);
@@ -42,7 +59,7 @@ app.use('/psyche/user-result', psycheresult);
 app.use('/psyche/test-result', testResults);
 
 //Sync Database {force:true}
-models.sequelize.sync({force:true}).then(function(){
+models.sequelize.sync().then(function(){
   console.log('Nice! Database looks fine');
 }).catch(function(err){
   console.log(err,"Something went wrong with the Database Update!");

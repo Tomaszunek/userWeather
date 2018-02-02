@@ -8,9 +8,9 @@ const router = express.Router();
 
 
 router.get('/getAll',function(req, res){
-  models.CommunicationFavoriteUser.findAll().then((favoriteProfiles) => {
-    if(favoriteProfiles){
-      res.send(favoriteProfiles);
+  models.CommunicationMessage.findAll().then((messages) => {
+    if(messages){
+      res.send(messages);
     }
   }).catch(function(err){
     res.send(err);
