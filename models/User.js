@@ -161,6 +161,11 @@ module.exports = function(sequelize, Sequelize) {
      foreignKey: 'userId2'
  });
 
+ User.hasOne(models.Notifications, {
+    as: 'UserNotifications',
+    foreignKey: 'userId'
+});
+
  User.belongsTo(models.Locations, {
     as: 'UserLocation',
     foreignKey: 'locationId'
