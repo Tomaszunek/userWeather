@@ -166,6 +166,11 @@ module.exports = function(sequelize, Sequelize) {
     foreignKey: 'userId'
 });
 
+User.hasOne(models.AccountStats, {
+   as: 'UserAccountStats',
+   foreignKey: 'userId'
+});
+
  User.belongsTo(models.Locations, {
     as: 'UserLocation',
     foreignKey: 'locationId'
