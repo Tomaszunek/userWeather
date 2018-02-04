@@ -7,10 +7,10 @@ const Sequelize = require('sequelize');
 const router = express.Router();
 
 
-router.get('/getAllEvents',function(req, res){
-  models.EventUser.findAll().then((watchedProfiles) => {
-    if(watchedProfiles){
-      res.send(watchedProfiles);
+router.get('/getAllFaqQuestion',function(req, res){
+  models.FaqQuestion.findAll().then((faqQuestion) => {
+    if(faqQuestion){
+      res.send(faqQuestion);
     }
   }).catch(function(err){
     res.send(err);
