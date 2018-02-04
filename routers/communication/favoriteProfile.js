@@ -7,7 +7,7 @@ const Sequelize = require('sequelize');
 const router = express.Router();
 
 
-router.get('/getAll',function(req, res){
+router.get('/getFavoriteProfiles',function(req, res){
   models.CommunicationFavoriteUser.findAll().then((favoriteProfiles) => {
     if(favoriteProfiles){
       res.send(favoriteProfiles);

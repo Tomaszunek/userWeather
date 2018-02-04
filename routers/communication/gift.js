@@ -7,7 +7,7 @@ const Sequelize = require('sequelize');
 const router = express.Router();
 
 
-router.get('/getAll',function(req, res){
+router.get('/getAllGifts',function(req, res){
   models.CommunicationGift.findAll().then((gifts) => {
     if(gifts){
       res.send(gifts);

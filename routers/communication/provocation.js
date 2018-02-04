@@ -7,7 +7,7 @@ const Sequelize = require('sequelize');
 const router = express.Router();
 
 
-router.get('/getAll',function(req, res){
+router.get('/getAllProvocations',function(req, res){
   models.CommunicationProvocation.findAll().then((provovations) => {
     if(provovations){
       res.send(provovations);

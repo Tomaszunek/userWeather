@@ -7,7 +7,7 @@ const Sequelize = require('sequelize');
 const router = express.Router();
 
 
-router.get('/getAll',function(req, res){
+router.get('/getWatchedProfiles',function(req, res){
   models.CommunicationWatchedProfile.findAll().then((watchedProfiles) => {
     if(watchedProfiles){
       res.send(watchedProfiles);

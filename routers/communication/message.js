@@ -7,7 +7,7 @@ const Sequelize = require('sequelize');
 const router = express.Router();
 
 
-router.get('/getAll',function(req, res){
+router.get('/getAllMassages',function(req, res){
   models.CommunicationMessage.findAll().then((messages) => {
     if(messages){
       res.send(messages);

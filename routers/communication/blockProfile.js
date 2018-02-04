@@ -7,7 +7,7 @@ const Sequelize = require('sequelize');
 const router = express.Router();
 
 
-router.get('/getAll',function(req, res){
+router.get('/getBlockProfiles',function(req, res){
   models.CommunicationBlackUser.findAll().then((blockProfiles) => {
     if(blockProfiles){
       res.send(blockProfiles);
