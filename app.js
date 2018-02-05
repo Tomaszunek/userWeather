@@ -26,6 +26,18 @@ const psycheuseranswer = require('./routers/psyche/userAnswer.js');
 const psycheresult = require('./routers/psyche/userResult.js');
 const testResults = require('./routers/psyche/testResult.js');
 
+const event = require('./routers/event/event.js');
+const faq = require('./routers/faq/faq.js');
+const image = require('./routers/image/image.js');
+const locations = require('./routers/location/location.js');
+const mailing = require('./routers/mailing/mailing.js');
+const news = require('./routers/news/news.js');
+const notification = require('./routers/notification/notification.js');
+const payments = require('./routers/payments/payments.js');
+const search = require('./routers/search/search.js');
+const stats = require('./routers/stats/stats.js');
+const user = require('./routers/user/user.js');
+
 //Models
 var models = require('./models');
 
@@ -57,6 +69,18 @@ app.use('/psyche/type-desc', psychetypedesc);
 app.use('/psyche/user-answer', psycheuseranswer);
 app.use('/psyche/user-result', psycheresult);
 app.use('/psyche/test-result', testResults);
+
+app.use('/event', events);
+app.use('/faq', faq);
+app.use('/image', image);
+app.use('/locations', locations);
+app.use('/mailing', mailing);
+app.use('/news', news);
+app.use('/notification', notification);
+app.use('/payments', payments);
+app.use('/search', search);
+app.use('/stats', stats);
+app.use('/user', user);
 
 //Sync Database {force:true}
 models.sequelize.sync().then(function(){
