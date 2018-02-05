@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const url = require('url');
 const http = require('http');
+const sessions = require('client-sessions');
 
 const commBlockProfile = require('./routers/communication/blockProfile.js');
 const commFavoriteProfile = require('./routers/communication/favoriteProfile.js');
@@ -26,13 +27,13 @@ const psycheuseranswer = require('./routers/psyche/userAnswer.js');
 const psycheresult = require('./routers/psyche/userResult.js');
 const testResults = require('./routers/psyche/testResult.js');
 
-const event = require('./routers/event/event.js');
+const events = require('./routers/event/event.js');
 const faq = require('./routers/faq/faq.js');
 const image = require('./routers/image/image.js');
 const locations = require('./routers/location/location.js');
 const mailing = require('./routers/mailing/mailing.js');
 const news = require('./routers/news/news.js');
-const notification = require('./routers/notification/notification.js');
+const notification = require('./routers/notifications/notification.js');
 const payments = require('./routers/payments/payments.js');
 const search = require('./routers/search/search.js');
 const stats = require('./routers/stats/stats.js');
@@ -42,6 +43,16 @@ const user = require('./routers/user/user.js');
 var models = require('./models');
 
 const app = express();
+
+app.use(sessions({
+  cookieName: 'session',
+  secret: 'some_secret_words',
+  duration: 30 * 60 * 1000,
+  activeDuration: 5 * 60 * 1000,
+  httpOnly:true,
+  //secure: true,
+  ephemeral: true,
+}));
 
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());

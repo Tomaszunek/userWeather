@@ -35,7 +35,7 @@ module.exports = function(sequelize, Sequelize) {
         },
 
         last_login: {
-            type: Sequelize.DATE,
+            type: Sequelize.INTEGER,
         },
 
         onlineNow: {
