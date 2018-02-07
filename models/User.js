@@ -11,10 +11,55 @@ module.exports = function(sequelize, Sequelize) {
         username: {
             type: Sequelize.TEXT,
             allowNull: false
+        },
+        email: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            validate: {
+                isEmail: true
+            }
+        },
+        password: {
+            type: Sequelize.STRING,
+            allowNull: false
+        },
+
+        locationId: {
+          type: Sequelize.INTEGER,
+          allowNull: false
+        },
+
+        phone: {
+          type: Sequelize.INTEGER,
+          allowNull: false
+        },
+
+        last_login: {
+            type: Sequelize.INTEGER,
+        },
+
+        onlineNow: {
+          type: Sequelize.BOOLEAN,
+          defaultValue: false
+        },
+
+        activeAcc: {
+          type: Sequelize.BOOLEAN,
+          defaultValue: false
+        },
+
+        passwdReset: {
+          type: Sequelize.BOOLEAN,
+          defaultValue: false
         }
 
     });
     User.associate = function (models) {
+
+      User.hasOne(models.UserDetail, {
+         as: 'UserDetail',
+         foreignKey: 'userId'
+       });
 
       User.hasOne(models.PsycheUserResult, {
          as: 'UserPsycheResult',
@@ -91,10 +136,49 @@ module.exports = function(sequelize, Sequelize) {
          foreignKey: 'userId1'
        });
 
-       User.hasOne(models.CommunicationGiftToken, {
-          as: 'UserCommunicationProvocationToken2',
-          foreignKey: 'userId2'
+       User.hasOne(models.EventInvite, {
+          as: 'UserEventInvite1',
+          foreignKey: 'userId1'
       });
+
+      User.hasOne(models.EventInvite, {
+         as: 'UserEventInvite2',
+         foreignKey: 'userId2'
+     });
+
+    User.hasOne(models.EventUser, {
+       as: 'UserEventCreatedUser',
+       foreignKey: 'createdByUserId'
+   });
+
+   User.hasOne(models.EventUserConn, {
+      as: 'UserEventUserConn1',
+      foreignKey: 'userId1'
+  });
+
+  User.hasOne(models.EventUserConn, {
+     as: 'UserEventUserConn2',
+     foreignKey: 'userId2'
+ });
+
+ User.hasOne(models.Notifications, {
+    as: 'UserNotifications',
+    foreignKey: 'userId'
+});
+
+User.hasOne(models.AccountStats, {
+   as: 'UserAccountStats',
+   foreignKey: 'userId'
+});
+
+ User.belongsTo(models.Locations, {
+    as: 'UserLocation',
+    foreignKey: 'locationId'
+});
+
+
+
+
 
     };
 
