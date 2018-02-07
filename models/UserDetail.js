@@ -27,19 +27,14 @@ module.exports = function(sequelize, Sequelize) {
             type: Sequelize.ENUM('MEN', 'WOMEN'),
             allowNull: true
         },
-
-        cityLive: {
-            type: Sequelize.STRING,
-            allowNull: false
-        },
-
+        
         address: {
             type: Sequelize.STRING,
             allowNull: false
         },
 
         birthDay: {
-            type: Sequelize.DATE,
+            type: Sequelize.INTEGER,
             allowNull: false
         }
 
