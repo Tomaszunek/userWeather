@@ -1,0 +1,6 @@
+<span>{{question.name}}</span>
+<ul>
+  <li class="psychTestAnswer" *ngFor="let answer of answers; let i = index" (click)="askQuestion(i)">
+    {{ letters[i] }} - {{ answer.name }}
+  </li>
+</ul>

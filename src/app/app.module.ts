@@ -15,6 +15,7 @@ import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { NavbarComponent } from './navbar/index';
 import { FooterComponent } from './footer/index';
+import { PsychtestComponent } from './psychtest/index';
  
 @NgModule({
     imports: [
@@ -29,6 +30,7 @@ import { FooterComponent } from './footer/index';
         HomeComponent,
         LoginComponent,
         RegisterComponent,
+        PsychtestComponent,
         NavbarComponent,
         FooterComponent
     ],
