@@ -7,11 +7,11 @@ import { AlertService, AuthenticationService } from '../_services/index';
  
 @Component({
     moduleId: module.id,
-    selector: 'navbar',
-    templateUrl: 'navbar.component.html'
+    selector: 'psyche-main',
+    templateUrl: 'psycheMain.component.html'
 })
  
-export class NavbarComponent implements OnInit {
+export class PsycheMainComponent implements OnInit {
 
     isLoggedIn$: Observable<boolean>;
  

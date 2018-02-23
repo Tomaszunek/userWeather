@@ -5,12 +5,12 @@ import { AlertService, AuthenticationService } from '../_services/index';
  
 @Component({
     moduleId: module.id,
-    selector: 'psychtest',
-    templateUrl: 'psychtest.component.html',
-    styleUrls: ['./psychtest.component.scss']
+    selector: 'psychetest',
+    templateUrl: 'psychetest.component.html',
+    styleUrls: ['./psychetest.component.scss']
 })
  
-export class PsychtestComponent implements OnInit {
+export class PsychetestComponent implements OnInit {
 
     answers: any[] = [
       {

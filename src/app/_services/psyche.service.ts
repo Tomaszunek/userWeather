@@ -13,18 +13,18 @@ export class PsycheService {
     }
  
     getById(id: number) {
-        return this.http.get(appConfig.apiUrl + '/psyche/' + id);
+        return this.http.get(appConfig.apiUrl + '/psyche/');
     }
  
     create(test: PsycheTest) {
-        return this.http.post(appConfig.apiUrl + '/psyche/registerUser', user);
+        return this.http.post(appConfig.apiUrl + '/psyche/registerUser');
     }
  
     update(test: PsycheTest) {
-        return this.http.put(appConfig.apiUrl + '/psyche/' + user.id, user);
+        return this.http.put(appConfig.apiUrl + '/psyche/');
     }
  
     delete(id: number) {
-        return this.http.delete(appConfig.apiUrl + '/psyche/' + id);
+        return this.http.delete(appConfig.apiUrl + '/psyche/');
     }
 }
