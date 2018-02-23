@@ -1,12 +1,9 @@
 'use strict';
 
 const express = require('express');
-const models = require('../../models');
-const Sequelize = require('sequelize');
-const bcrypt = require('bcrypt');
-const sessions = require('client-sessions');
-
+const userService = require('./userService');
 const router = express.Router();
+
 
 router.get('/getUsers',function(req, res){
   models.User.findAll().then((user) => {
@@ -45,7 +42,7 @@ router.post('/registerUser',function(req, res){
       res.send("This user exists");
     } else {
       models.User.create(userHashed).then(() =>{
-        res.sendStatus(200);
+        res.json('success');
       });
     }
   }).catch(function(err){
@@ -86,25 +83,34 @@ router.get('/acceptMail/:username',function(req, res){
 
 
 
-router.get('/loginUser',function(req, res){
-  models.User.find({where: {[Sequelize.Op.or] : [{'username' : req.body.username}, {'email' : req.body.username}]}}).then((user) => {
-    if(!user){
-      res.send("User doasnt exists");
-    } else {
-      if(bcrypt.compareSync(req.body.password, user.password)) {
-        req.session.username = user.username;
-        if(user.activeAcc === true && user.last_login == null) {
-          res.send("firstLogin");
-        } else if(user.last_login !== null){
-          res.send("nextLogin");
-        } else {
-          res.send("isUnactive");
-        }
-      }
-    }
-  }).catch(function(err){
-    res.send(err);
-  });
+router.post('/loginUser',function(req, res){
+  userService.authenticate(req.body.username, req.body.password)
+       .then(function (user) {
+           if (user) {
+               // authentication successful
+               res.send(user);
+           } else {
+               // authentication failed
+               res.status(400).send('Username or password is incorrect');
+           }
+       })
+       .catch(function (err) {
+           res.status(400).send(err);
+       });
+});
+
+router.get('/users',function(req, res){
+  userService.getAll()
+       .then(function (users) {
+           if (users) {
+               res.send(users);
+           } else {
+               res.status(400).send('Username dont exists');
+           }
+       })
+       .catch(function (err) {
+           res.status(400).send(err);
+       });
 });
 
 

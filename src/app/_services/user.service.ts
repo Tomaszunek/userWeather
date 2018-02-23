@@ -9,11 +9,11 @@ export class UserService {
     constructor(private http: HttpClient) { }
  
     getAll() {
-        return this.http.get<User[]>(appConfig.apiUrl + '/users');
+        return this.http.get<User[]>(appConfig.apiUrl + '/user/users');
     }
  
     getById(id: number) {
-        return this.http.get(appConfig.apiUrl + '/users/' + id);
+        return this.http.get(appConfig.apiUrl + '/user/users/' + id);
     }
  
     create(user: User) {
