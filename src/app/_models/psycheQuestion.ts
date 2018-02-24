@@ -4,4 +4,5 @@ export class PsycheQuestion {
     order: number;
     questionName: string;
     questionBody: string;
+    psycheAnswers: PsycheAnswer[] = [];
 }

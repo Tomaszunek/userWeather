@@ -11,6 +11,18 @@ export class PsycheService {
     getAllPsycheTest() {
         return this.http.get<PsycheTest[]>(appConfig.apiUrl + '/psyche/test-name/getAllPsyche');
     }
+
+    getAllQuestion(testId: number) {
+        return this.http.get<PsycheQuestion[]>(appConfig.apiUrl + '/psyche/question/getQuestions/' + testId);
+    }
+
+    getAllAnswers(testId: number) {
+        return this.http.get<PsycheAnswer[]>(appConfig.apiUrl + '/psyche/answer/getAnswers/' + testId);
+    }
+
+    askQuestion(userId: number, questionId: number, answerId: number) {
+        return this.http.post(appConfig.apiUrl + '/psyche/user-answer/createUserAnswer/' + userId + '/' + questionId + '/' + answerId);
+    }
  
     getById(id: number) {
         return this.http.get(appConfig.apiUrl + '/psyche/');

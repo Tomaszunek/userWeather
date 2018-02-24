@@ -1,6 +1,10 @@
-<span>{{question.name}}</span>
-<ul>
-  <li class="psychTestAnswer" *ngFor="let answer of answers; let i = index" (click)="askQuestion(i)">
-    {{ letters[i] }} - {{ answer.name }}
-  </li>
+<ng-container *ngFor="let question of questions">
+  {{question.id}} {{question.testId}} {{question.questionName}} {{question.questionBody}}
+  <ul>
+   <ng-container *ngFor="let answer of answers">
+    <li class="psycheAnswer" (click)="askQuestion(question.id, answer.id)" *ngIf="(question.id == answer.questionId)">
+      {{answer.questionId}} {{answer.answer}} {{answer.answerValue}}
+    </li>                           
+  </ng-container>
 </ul>
+</ng-container>

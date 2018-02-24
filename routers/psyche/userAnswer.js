@@ -3,6 +3,7 @@
 const express = require('express');
 const models = require('../../models');
 const Sequelize = require('sequelize');
+const psycheService = require('./psycheService');
 
 const router = express.Router();
 
@@ -28,26 +29,14 @@ router.get('/getUserAnswer/:id',function(req, res){
 
 
 router.post('/createUserAnswer/:userId/:questionId/:answerId',function(req, res){
-  models.PsycheUserAnswer.findOne({where: {'userId' : req.params.userId, 'questionId' : req.params.questionId}}).then((userAnswers) => {
-    if(userAnswers){
-      models.PsycheUserAnswer.update({'answerId' : req.params.answerId}, {where: [{'userId' : req.params.userId}, {'questionId' : req.params.questionId}]}).then((userAnswer2) => {
-        if(userAnswer2){
-          res.send(userAnswer2);
-        }
-      }).catch(function(err){
-        res.send(err);
-      });
+  psycheService.createUserAnswer(req.params.userId, req.params.questionId, req.params.answerId).then((questions) => {
+    if (questions) {
+        res.send(questions);
     } else {
-      models.PsycheUserAnswer.create({'userId' : req.params.userId, 'questionId' : req.params.questionId, 'answerId' : req.params.answerId}).then((userAnswer2) => {
-        if(userAnswer2){
-          res.send(userAnswer2);
-        }
-      }).catch(function(err){
-        res.send(err);
-      });
+        res.status(400).send('We cant answer');
     }
-  }).catch(function(err){
-    res.send(err);
+  }).catch(function (err) {
+      res.status(400).send(err);
   });
 });
 

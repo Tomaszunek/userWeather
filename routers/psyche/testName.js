@@ -3,15 +3,19 @@
 const express = require('express');
 const models = require('../../models');
 const Sequelize = require('sequelize');
-
+const psycheService = require('./psycheService');
 const router = express.Router();
 
 
 router.get('/getAllPsyche',function(req, res){
-  models.PsycheTestName.findAll().then((psychTest) => {
-    res.send(psychTest);
-  }).catch(function(err){
-    res.send(err);
+  psycheService.getAll().then((psychTest) => {
+    if (psychTest) {
+        res.send(psychTest);
+    } else {
+        res.status(400).send('We cant get psych tests');
+    }
+  }).catch(function (err) {
+      res.status(400).send(err);
   });
 });
 
