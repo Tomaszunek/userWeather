@@ -86,7 +86,7 @@ router.get('/acceptMail/:username',function(req, res){
 
 
 
-router.post('/loginUser',function(req, res){
+router.get('/loginUser',function(req, res){
   models.User.find({where: {[Sequelize.Op.or] : [{'username' : req.body.username}, {'email' : req.body.username}]}}).then((user) => {
     if(!user){
       res.send("User doasnt exists");
