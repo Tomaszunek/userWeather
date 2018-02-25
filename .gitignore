@@ -8,6 +8,7 @@
 # dependencies
 /node_modules
 /config
+/routers/config.js
 
 # IDEs and editors
 /.idea

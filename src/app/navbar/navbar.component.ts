@@ -12,8 +12,6 @@ import { AlertService, AuthenticationService } from '../_services/index';
 })
  
 export class NavbarComponent implements OnInit {
-
-    isLoggedIn$: Observable<boolean>;
  
     constructor(
         private route: ActivatedRoute,
@@ -21,7 +19,7 @@ export class NavbarComponent implements OnInit {
         private router: Router) { }
  
     ngOnInit() {
-        this.isLoggedIn$ = this.authGuard.canActivate();
+        
     }
     
 }

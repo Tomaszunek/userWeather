@@ -3,6 +3,5 @@ export class PsycheQuestion {
     testId: number;
     order: number;
     questionName: string;
-    questionBody: string;
-    psycheAnswers: PsycheAnswer[] = [];
+    questionBody: string;    
 }

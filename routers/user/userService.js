@@ -15,11 +15,14 @@ const router = express.Router();
 var service = {};
 
 service.authenticate = authenticate;
+service.createDetails = createDetails;
 service.getAll = getAll;
 service.getById = getById;
 service.create = create;
 service.update = update;
 service.delete = _delete;
+service.updateLoginTime = updateLoginTime;
+service.activeAccount  = updateActiveAcc;
 
 module.exports = service;
 
@@ -34,6 +37,8 @@ function authenticate(username, password) {
                 id: user.id,
                 username: user.username,
                 email: user.email,
+                activeAcc: user.activeAcc,
+                last_login: user.last_login,
                 token: jwt.sign({ sub: user.id }, config.secretJwt)
             });
         } else {
@@ -79,37 +84,82 @@ function getById(_id) {
 
 function create(userParam) {
     var deferred = Q.defer();
-
     // validation
-    db.users.findOne(
-        { username: userParam.username },
-        function (err, user) {
-            if (err) deferred.reject(err.name + ': ' + err.message);
-
-            if (user) {
-                // username already exists
-                deferred.reject('Username "' + userParam.username + '" is already taken');
-            } else {
-                createUser();
-            }
-        });
-
+    models.User.findOne({where:{ username: userParam.username }}).then(user => {
+      if (user) {          // username already exists
+        deferred.reject('Username "' + userParam.username + '" is already taken');
+      } else {
+        createUser();
+      }
+    }).catch(err => {
+      deferred.reject(err.name + ': ' + err.message);
+    });
     function createUser() {
-        // set user object to userParam without the cleartext password
         var user = _.omit(userParam, 'password');
+        var salt = bcrypt.genSaltSync(10);
+        user.password = bcrypt.hashSync(userParam.password, salt);
 
-        // add hashed password to user object
-        user.hash = bcrypt.hashSync(userParam.password, 10);
-
-        db.users.insert(
-            user,
-            function (err, doc) {
-                if (err) deferred.reject(err.name + ': ' + err.message);
-
-                deferred.resolve();
-            });
+        models.User.create(user).then(() => {
+          sendMailRegister(user.username, user.email);
+          deferred.resolve();
+        }).catch((err) => {
+           deferred.reject(err.name + ': ' + err.message);
+        });
     }
 
+    return deferred.promise;
+}
+
+function sendMailRegister(username, recMail){
+  let configMail = config.mailOptions;
+  configMail.to = recMail;
+  configMail.subject = 'Thanks for register on ' +  username + ' service';
+  configMail.html = '<h1>Now you are register ' + username +'!</h1>' +
+                '<p>You can login to service now.</p><p>Active your account ' +
+                config.hostname + '/user/activeAccount/' + username + '</p>' +
+                '<p>Thanks for using our service ' + config.hostname + '</p>';
+  config.transporter.sendMail(configMail, function(err, info){
+    if(err){
+      console.log(err);
+    } else {
+      console.log('Email sent:' + info.response);
+    }
+  });
+}
+
+function createDetails(userDetailsParam) {
+    var deferred = Q.defer();
+    // validation
+    models.UserDetail.create(userDetailsParam).then(() => {
+      updateLoginTime(userDetailsParam.userId).then(() => {
+        deferred.resolve();
+      });
+    }).catch((err) => {
+      deferred.reject(err.name + ': ' + err.message);
+    });
+
+    return deferred.promise;
+}
+
+function updateLoginTime(userId) {
+    var deferred = Q.defer();
+    // validation
+    models.User.update({'last_login' : new Date().getTime()/1000},{ where:{ id: userId }}).then(() => {
+      deferred.resolve();
+    }).catch(err => {
+      deferred.reject(err.name + ': ' + err.message);
+    });
+    return deferred.promise;
+}
+
+function updateActiveAcc(username) {
+    var deferred = Q.defer();
+
+    models.User.update({'activeAcc' : 1},{ where:{ 'username': username }}).then(() => {
+      deferred.resolve();
+    }).catch(err => {
+      deferred.reject(err.name + ': ' + err.message);
+    });
     return deferred.promise;
 }
 

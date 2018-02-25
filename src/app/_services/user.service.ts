@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
  
 import { appConfig } from '../app.config';
-import { User } from '../_models/index';
+import { User, UserDetails } from '../_models/index';
  
 @Injectable()
 export class UserService {
@@ -18,6 +18,10 @@ export class UserService {
  
     create(user: User) {
         return this.http.post(appConfig.apiUrl + '/user/registerUser', user);
+    }
+
+    createDetails(details: UserDetails) {
+        return this.http.post(appConfig.apiUrl + '/user/createDetails', details);
     }
  
     update(user: User) {
