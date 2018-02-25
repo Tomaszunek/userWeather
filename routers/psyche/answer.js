@@ -3,6 +3,7 @@
 const express = require('express');
 const models = require('../../models');
 const Sequelize = require('sequelize');
+const psycheService = require('./psycheService');
 
 const router = express.Router();
 
@@ -14,6 +15,18 @@ router.get('/getAnswers',function(req, res){
     }
   }).catch(function(err){
     res.send(err);
+  });
+});
+
+router.get('/getAnswers/:testId',function(req, res){
+  psycheService.getAllAnswers(req.params.testId).then((answers) => {
+    if (answers) {
+        res.send(answers);
+    } else {
+        res.status(400).send('We cant get psych answers');
+    }
+  }).catch(function (err) {
+      res.status(400).send(err);
   });
 });
 
