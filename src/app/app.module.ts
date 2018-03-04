@@ -13,12 +13,10 @@ import { JwtInterceptorProvider, ErrorInterceptorProvider } from './_helpers/ind
 import { AlertService, PsycheService, AuthenticationService, UserService } from './_services/index';
 import { HomeComponent } from './home/index';
 import { LoginComponent } from './login/index';
-import { FirstLoginComponent } from './firstLogin/index';
 import { RegisterComponent } from './register/index';
 import { NavbarComponent } from './navbar/index';
 import { FooterComponent } from './footer/index';
-import { PsychetestComponent } from './psycheTest/index';
-import { PsycheMainComponent } from './psycheMain/index';
+
  
 @NgModule({
     imports: [
@@ -33,10 +31,7 @@ import { PsycheMainComponent } from './psycheMain/index';
         AlertComponent,
         HomeComponent,
         LoginComponent,
-        FirstLoginComponent,
         RegisterComponent,
-        PsychetestComponent,
-        PsycheMainComponent,
         NavbarComponent,
         FooterComponent
     ],
@@ -45,7 +40,6 @@ import { PsycheMainComponent } from './psycheMain/index';
         AlertService,
         AuthenticationService,
         UserService,
-        PsycheService,
         JwtInterceptorProvider,
         ErrorInterceptorProvider
     ],
