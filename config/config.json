@@ -4,7 +4,7 @@
 
         "username": "root",
         "password": null,
-        "database": "fundament",
+        "database": "userWeather",
         "host": "127.0.0.1",
         "dialect": "mysql"
 
@@ -14,7 +14,7 @@
 
       "username": "root",
       "password": null,
-      "database": "fundament_test",
+      "database": "userWeather",
       "host": "127.0.0.1",
       "dialect": "mysql"
 
@@ -24,7 +24,7 @@
 
       "username": "root",
       "password": null,
-      "database": "fundament",
+      "database": "userWeather",
       "host": "127.0.0.1",
       "dialect": "mysql"
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
  
 import { User } from '../_models/index';
-import { UserService } from '../_services/index';
+import { UserService, WeatherService } from '../_services/index';
  
 @Component({
     moduleId: module.id,
@@ -9,22 +9,35 @@ import { UserService } from '../_services/index';
 })
  
 export class HomeComponent implements OnInit {
-    currentUser: User;
+    currentUser: any = {};
     users: User[] = [];
+    weather: any = {};
  
-    constructor(private userService: UserService) {
-        this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    constructor(private userService: UserService, private weatherService : WeatherService) {       
     }
  
     ngOnInit() {
         this.loadAllUsers();
+
     }
+
+    selectUser(id: number) {
+        this.userService.getById(id)
+          .subscribe((user) => {
+           this.currentUser = user;
+           this.weatherService.getWeather(
+             this.currentUser.UserCountry.sortname,
+             this.currentUser.UserCity.cityName)
+             .subscribe((weather) => {this.weather = weather;});
+         });
+    }
  
     deleteUser(id: number) {
         this.userService.delete(id).subscribe(() => { this.loadAllUsers() });
     }
  
     private loadAllUsers() {
-        this.userService.getAll().subscribe(users => { this.users = users; });
+        this.userService.getAll().subscribe(users => { this.users = users;
+        this.selectUser(users[0].id))});
     }
 }

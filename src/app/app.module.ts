@@ -8,17 +8,13 @@ import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
  
 import { AlertComponent } from './_directives/index';
-import { AuthGuard } from './_guards/index';
 import { JwtInterceptorProvider, ErrorInterceptorProvider } from './_helpers/index';
-import { AlertService, PsycheService, AuthenticationService, UserService } from './_services/index';
+import { AlertService, UserService, WeatherService, LocationService } from './_services/index';
 import { HomeComponent } from './home/index';
-import { LoginComponent } from './login/index';
-import { FirstLoginComponent } from './firstLogin/index';
 import { RegisterComponent } from './register/index';
+import { EditUserComponent } from './editUser/index';
 import { NavbarComponent } from './navbar/index';
-import { FooterComponent } from './footer/index';
-import { PsychetestComponent } from './psycheTest/index';
-import { PsycheMainComponent } from './psycheMain/index';
+
  
 @NgModule({
     imports: [
@@ -32,20 +28,15 @@ import { PsycheMainComponent } from './psycheMain/index';
         AppComponent,
         AlertComponent,
         HomeComponent,
-        LoginComponent,
-        FirstLoginComponent,
         RegisterComponent,
-        PsychetestComponent,
-        PsycheMainComponent,
-        NavbarComponent,
-        FooterComponent
+        EditUserComponent,
+        NavbarComponent
     ],
     providers: [
-        AuthGuard,
-        AlertService,
-        AuthenticationService,
         UserService,
-        PsycheService,
+        AlertService,
+        WeatherService,
+        LocationService,
         JwtInterceptorProvider,
         ErrorInterceptorProvider
     ],
