@@ -1,51 +1,50 @@
 <div class="col-md-6 col-md-offset-3">
     <h2>Register</h2>
-    <form name="form" (ngSubmit)="f.form.valid && createUser()" #f="ngForm" novalidate>
+    <form name="form" (ngSubmit)="f.form.valid && updateUser()" #f="ngForm" novalidate>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !firstName.valid }">
             <label for="firstName">First Name</label>
-            <input type="text" class="form-control" name="firstName" [(ngModel)]="model.firstName" #firstName="ngModel" required />
+            <input type="text" class="form-control" name="firstName" [(ngModel)]="currentUser.firstName" #firstName="ngModel" required />
             <div *ngIf="f.submitted && !firstName.valid" class="help-block">First Name is required</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !lastName.valid }">
             <label for="lastName">Last Name</label>
-            <input type="text" class="form-control" name="lastName" [(ngModel)]="model.lastName" #lastName="ngModel" required />
+            <input type="text" class="form-control" name="lastName" [(ngModel)]="currentUser.lastName" #lastName="ngModel" required />
             <div *ngIf="f.submitted && !lastName.valid" class="help-block">Last Name is required</div>
         </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !country.valid }">
             <label for="country">Country</label>
-            <select class="form-control" name="country" [(ngModel)]="model.countryId" (change)="selectCountry()" #country="ngModel" required>
+            <select class="form-control" name="country" [(ngModel)]="currentUser.countryId" (change)="selectCountry()" #country="ngModel" required>
               <option *ngFor="let c of coutries" [ngValue]="c.id">{{c.name}}</option>
             </select>
-            <div *ngIf="f.submitted && !country.valid" class="help-block">country is require</div>
-        </div>
+                    <div *ngIf="f.submitted && !country.valid" class="help-block">country is require</div>
+                </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !state.valid }">
              <label for="state">State</label>
-            <select class="form-control" name="state" [(ngModel)]="model.stateId" #state="ngModel"  (change)="selectState()" required>
+            <select class="form-control" name="state" [(ngModel)]="currentUser.stateId" #state="ngModel"  (change)="selectState()" required>
               <option *ngFor="let s of newStates" [ngValue]="s.id">{{s.name}}</option>
             </select>
-            <div *ngIf="f.submitted && !state.valid" class="help-block">State is require</div>
-        </div>
+                    <div *ngIf="f.submitted && !state.valid" class="help-block">State is require</div>
+                </div>
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !city.valid }">
-            <label for="city">City</label>
-            <select class="form-control" name="city" [(ngModel)]="model.cityId" #city="ngModel" required>
+                    <label for="city">City</label>
+            <select class="form-control" name="city" [(ngModel)]="currentUser.cityId" #city="ngModel" required>
               <option *ngFor="let c of newCities" [ngValue]="c.id">{{c.cityName}}</option>
             </select>
-            <div *ngIf="f.submitted && !city.valid" class="help-block">City is require</div>
+           <div *ngIf="f.submitted && !city.valid" class="help-block">City is require</div>
         </div>
-
         <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !gender.valid }">
             <label for="gender">Gender</label>
             <label for=""> Men
-              <input type="radio" class="form-control" value="Men" name="gender" [(ngModel)]="model.gender" #gender="ngModel" required>
+              <input type="radio" class="form-control" value="Men" name="gender" [(ngModel)]="currentUser.gender" #gender="ngModel" required>
             </label>
             <label for=""> Women
-              <input type="radio" class="form-control" value="Women" name="gender" [(ngModel)]="model.gender" #gender="ngModel" required>
+              <input type="radio" class="form-control" value="Women" name="gender" [(ngModel)]="currentUser.gender" #gender="ngModel" required>
             </label>
 
             <div *ngIf="f.submitted && !gender.valid" class="help-block">Gender is require</div>
         </div>
         <div class="form-group">
-            <button [disabled]="loading" class="btn btn-primary">Create User</button>
+            <button [disabled]="loading" class="btn btn-primary">Update User</button>
             <img *ngIf="loading" src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
         </div>
     </form>

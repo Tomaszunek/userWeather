@@ -9,9 +9,10 @@ import { routing }        from './app.routing';
  
 import { AlertComponent } from './_directives/index';
 import { JwtInterceptorProvider, ErrorInterceptorProvider } from './_helpers/index';
-import { AlertService, UserService, WeatherService } from './_services/index';
+import { AlertService, UserService, WeatherService, LocationService } from './_services/index';
 import { HomeComponent } from './home/index';
 import { RegisterComponent } from './register/index';
+import { EditUserComponent } from './editUser/index';
 import { NavbarComponent } from './navbar/index';
 
  
@@ -28,12 +29,14 @@ import { NavbarComponent } from './navbar/index';
         AlertComponent,
         HomeComponent,
         RegisterComponent,
+        EditUserComponent,
         NavbarComponent
     ],
     providers: [
         UserService,
         AlertService,
         WeatherService,
+        LocationService,
         JwtInterceptorProvider,
         ErrorInterceptorProvider
     ],

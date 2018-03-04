@@ -18,13 +18,18 @@ module.exports = function(sequelize, Sequelize) {
           allowNull: false
         },
 
-        city: {
-          type: Sequelize.TEXT,
+        cityId: {
+          type: Sequelize.INTEGER,
           allowNull: false
         },
 
-        country: {
-          type: Sequelize.TEXT,
+        stateId: {
+          type: Sequelize.INTEGER,
+          allowNull: false
+        },
+
+        countryId: {
+          type: Sequelize.INTEGER,
           allowNull: false
         },
 
@@ -35,6 +40,21 @@ module.exports = function(sequelize, Sequelize) {
 
     });
     User.associate = function (models) {
+
+      User.belongsTo(models.City, {
+         as: 'UserCity',
+         foreignKey: 'cityId'
+       });
+
+       User.belongsTo(models.State, {
+          as: 'UserState',
+          foreignKey: 'stateId'
+        });
+
+       User.belongsTo(models.Country, {
+         as: 'UserCountry',
+         foreignKey: 'countryId'
+       });
     };
 
     return User;

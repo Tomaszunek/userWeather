@@ -20,8 +20,8 @@ export class UserService {
         return this.http.post(appConfig.apiUrl + '/user/createUser', user);
     }
  
-    update(user: User) {
-        return this.http.post(appConfig.apiUrl + '/user/upradeUser/' + user.id, user);
+    update(id: number, user: User) {
+        return this.http.post(appConfig.apiUrl + '/user/updateUser/' + user.id, user);
     }
  
     delete(id: number) {

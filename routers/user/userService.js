@@ -20,6 +20,10 @@ service.create = create;
 service.update = update;
 service._delete = _delete;
 
+service.getCities = getCities;
+service.getStates = getStates;
+service.getCountries = getCountries;
+
 module.exports = service;
 
 function getAll() {
@@ -34,10 +38,50 @@ function getAll() {
     return deferred.promise;
 }
 
+function getCities() {
+    var deferred = Q.defer();
+
+    models.City.findAll().then((cities) => {
+      deferred.resolve(cities);
+    }).catch((err) => {
+      deferred.reject(err.name + ': ' + err.message);
+    });
+
+    return deferred.promise;
+}
+
+function getStates() {
+    var deferred = Q.defer();
+
+    models.State.findAll().then((states) => {
+      deferred.resolve(states);
+    }).catch((err) => {
+      deferred.reject(err.name + ': ' + err.message);
+    });
+
+    return deferred.promise;
+}
+
+
+function getCountries() {
+    var deferred = Q.defer();
+
+    models.Country.findAll().then((countries) => {
+      deferred.resolve(countries);
+    }).catch((err) => {
+      deferred.reject(err.name + ': ' + err.message);
+    });
+
+    return deferred.promise;
+}
+
 function getById(id) {
     var deferred = Q.defer();
 
-    models.User.findOne({where:{ 'id' : id}}).then(user => {
+    models.User.findOne({where:{ 'id' : id}, include : [
+      {model: models.City, as : 'UserCity'},
+      {model: models.State, as : 'UserState'},
+      {model: models.Country, as : 'UserCountry'}]}).then(user => {
         deferred.resolve(user);
       }).catch((err) => {
         deferred.reject(err.name + ': ' + err.message)

@@ -1,6 +1,6 @@
 module.exports = function(sequelize, Sequelize) {
 
-    var City = sequelize.define('City', {
+    var State = sequelize.define('State', {
 
         id: {
           autoIncrement: true,
@@ -8,23 +8,23 @@ module.exports = function(sequelize, Sequelize) {
           type: Sequelize.INTEGER
         },
 
-        cityName: {
+        name: {
           type: Sequelize.TEXT,
           allowNull: false
         },
 
-        stateId: {
+        countryId: {
           type: Sequelize.INTEGER,
           allowNull: false
         }
     });
-    City.associate = function (models) {
-      City.hasOne(models.User, {
-        as: 'CountryUser',
-        foreignKey: 'cityId'
+    State.associate = function (models) {
+      State.hasOne(models.User, {
+        as: 'StateUser',
+        foreignKey: 'stateId'
       });
     };
 
-    return City;
+    return State;
 
 };
