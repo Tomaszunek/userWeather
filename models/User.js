@@ -3,64 +3,38 @@ module.exports = function(sequelize, Sequelize) {
     var User = sequelize.define('User', {
 
         id: {
-            autoIncrement: true,
-            primaryKey: true,
-            type: Sequelize.INTEGER
+          autoIncrement: true,
+          primaryKey: true,
+          type: Sequelize.INTEGER
         },
 
-        username: {
-            type: Sequelize.TEXT,
-            allowNull: false
-        },
-        email: {
-            type: Sequelize.STRING,
-            allowNull: false,
-            validate: {
-                isEmail: true
-            }
-        },
-        password: {
-            type: Sequelize.STRING,
-            allowNull: false
-        },
-
-        locationId: {
-          type: Sequelize.INTEGER,
+        firstName: {
+          type: Sequelize.TEXT,
           allowNull: false
         },
 
-        phone: {
-          type: Sequelize.INTEGER,
+        lastName: {
+          type: Sequelize.TEXT,
           allowNull: false
         },
 
-        last_login: {
-            type: Sequelize.INTEGER,
+        city: {
+          type: Sequelize.TEXT,
+          allowNull: false
         },
 
-        onlineNow: {
-          type: Sequelize.BOOLEAN,
-          defaultValue: false
+        country: {
+          type: Sequelize.TEXT,
+          allowNull: false
         },
 
-        activeAcc: {
-          type: Sequelize.BOOLEAN,
-          defaultValue: false
-        },
-
-        passwdReset: {
-          type: Sequelize.BOOLEAN,
-          defaultValue: false
+        gender: {
+          type: Sequelize.TEXT,
+          allowNull: false
         }
 
     });
     User.associate = function (models) {
-
-
-
-
-
-
     };
 
     return User;

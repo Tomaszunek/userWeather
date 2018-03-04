@@ -8,14 +8,11 @@ import { AppComponent }  from './app.component';
 import { routing }        from './app.routing';
  
 import { AlertComponent } from './_directives/index';
-import { AuthGuard } from './_guards/index';
 import { JwtInterceptorProvider, ErrorInterceptorProvider } from './_helpers/index';
-import { AlertService, PsycheService, AuthenticationService, UserService } from './_services/index';
+import { AlertService, UserService, WeatherService } from './_services/index';
 import { HomeComponent } from './home/index';
-import { LoginComponent } from './login/index';
 import { RegisterComponent } from './register/index';
 import { NavbarComponent } from './navbar/index';
-import { FooterComponent } from './footer/index';
 
  
 @NgModule({
@@ -30,16 +27,13 @@ import { FooterComponent } from './footer/index';
         AppComponent,
         AlertComponent,
         HomeComponent,
-        LoginComponent,
         RegisterComponent,
-        NavbarComponent,
-        FooterComponent
+        NavbarComponent
     ],
     providers: [
-        AuthGuard,
-        AlertService,
-        AuthenticationService,
         UserService,
+        AlertService,
+        WeatherService,
         JwtInterceptorProvider,
         ErrorInterceptorProvider
     ],

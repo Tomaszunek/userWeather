@@ -17,13 +17,13 @@ export class RegisterComponent {
         private userService: UserService,
         private alertService: AlertService) { }
  
-    register() {
+    createUser() {
         this.loading = true;
         this.userService.create(this.model)
             .subscribe(
                 data => {
-                    this.alertService.success('Registration successful', true);
-                    this.router.navigate(['/login']);
+                    this.alertService.success('User successful created', true);
+                    this.router.navigate(['']);
                 },
                 error => {
                     this.alertService.error(error);

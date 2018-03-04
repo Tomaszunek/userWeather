@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
  
 import { appConfig } from '../app.config';
-import { User, UserDetails } from '../_models/index';
+import { User } from '../_models/index';
  
 @Injectable()
 export class UserService {
@@ -13,22 +13,18 @@ export class UserService {
     }
  
     getById(id: number) {
-        return this.http.get(appConfig.apiUrl + '/user/users/' + id);
+        return this.http.get(appConfig.apiUrl + '/user/getUser/' + id);
     }
  
     create(user: User) {
-        return this.http.post(appConfig.apiUrl + '/user/registerUser', user);
-    }
-
-    createDetails(details: UserDetails) {
-        return this.http.post(appConfig.apiUrl + '/user/createDetails', details);
+        return this.http.post(appConfig.apiUrl + '/user/createUser', user);
     }
  
     update(user: User) {
-        return this.http.put(appConfig.apiUrl + '/users/' + user.id, user);
+        return this.http.post(appConfig.apiUrl + '/user/upradeUser/' + user.id, user);
     }
  
     delete(id: number) {
-        return this.http.delete(appConfig.apiUrl + '/users/' + id);
+        return this.http.delete(appConfig.apiUrl + '/user/deleteUser/' + id);
     }
 }
