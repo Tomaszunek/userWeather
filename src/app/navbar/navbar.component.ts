@@ -8,7 +8,8 @@ import { AlertService, AuthenticationService } from '../_services/index';
 @Component({
     moduleId: module.id,
     selector: 'navbar',
-    templateUrl: 'navbar.component.html'
+    templateUrl: 'navbar.component.html',
+    styleUrls: ['./navbar.component.scss']
 })
  
 export class NavbarComponent implements OnInit {
