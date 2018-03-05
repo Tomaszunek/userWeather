@@ -9,7 +9,7 @@
           <th scope="row">Gender</th>
           <th scope="row">Actions</th>
         </thead>
-        <tbody>
+        <tbody *ngIf="usersFound">
           <tr *ngFor="let user of users" (click)="selectUser(user.id)">
             <td>
               {{user.firstName}}
@@ -35,7 +35,7 @@
       </table>
       <tbody>        
   </div>
-  <div class="col-sm-4 col-md-4 col-lg-4">
+  <div class="col-sm-4 col-md-4 col-lg-4" *ngIf="whetherFound">
       <h4>User Details</h4>
       <div class="row">
         <div class="col-sm-6 col-md-6 col-lg-6">
@@ -111,7 +111,7 @@
         </div>
       </div>
     </div>
-    <div class="col-sm-4 col-md-4 col-lg-4">
+    <div class="col-sm-4 col-md-4 col-lg-4" *ngIf="whetherFound">
       <h5>Last conditions in {{weather.query.results.channel.location.city}}</h5>
       <table class="table">
         <thead>
